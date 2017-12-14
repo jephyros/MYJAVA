@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JQ그리드테스트</title>
 
-<link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/resources/jquery.jqGrid-4.4.3/css/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/resources/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/resources/jquery.jqGrid-4.4.3/css/ui.jqgrid.css" />
 <script src="${pageContext.request.contextPath}/resources/jquery.jqGrid-4.4.3/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/jquery.jqGrid-4.4.3/js/i18n/grid.locale-kr.js" type="text/javascript"></script>
@@ -18,17 +18,17 @@
 <script type="text/javascript" charset="UTF-8">
 jQuery(document).ready(function(){
 	jQuery("#gridlist").jqGrid({
-        url:'userList',
-        datatype: 'json',
+        url:'userList.do',
+        datatype: 'json',       
         mtype:'POST',       
         colNames:["순번",'아이디','유저명','비고','수정자','등록일'],
         colModel:[
-        	{name:'rnum',index:'rnum', width:4, align:"center"},
-       		{name:'user_id',index:'user_id', width:5, align:"left"},
-       		{name:'user_name',index:'user_name', width:5, align:"left"},
-       		{name:'remark',index:'remark', width:5, align:"left"},
-       		{name:'lst_modify_id',index:'lst_modify_id', width:5, align:"left"},		
-       		{name:'lst_modify_dt',index:'lst_modify_dt', width:5,align:"left"},		
+        	{name:'rnum',index:'rnum', width:30, align:"center"},
+       		{name:'user_id',index:'user_id', width:50, align:"left"},
+       		{name:'user_name',index:'user_name', width:100, align:"left"},
+       		{name:'remark',index:'remark', width:150, align:"left"},
+       		{name:'lst_modify_id',index:'lst_modify_id', width:50, align:"left"},		
+       		{name:'lst_modify_dt',index:'lst_modify_dt', width:130,align:"left"},		
        		
        		
                   
@@ -41,7 +41,7 @@ jQuery(document).ready(function(){
         viewrecords: true,
         sortorder: "desc",
         caption: "유저리스트",
-        autowidth : true,
+        autowidth : false,
         height :'auto',
        
         jsonReader: {

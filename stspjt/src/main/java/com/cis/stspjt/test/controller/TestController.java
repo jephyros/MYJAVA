@@ -113,7 +113,7 @@ public class TestController extends MultiActionController{
 		return mav;
 	}
 	
-	@RequestMapping(value = "/userList",method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@RequestMapping(value = "/userList.do",method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	  public @ResponseBody String getUserList(HttpServletRequest request,
 	                                                                       HttpServletResponse response,
 	                                                @RequestParam boolean _search,
