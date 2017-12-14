@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.test">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="userResult" type="tcmtuser">
+		<result property="user_id" column="user_id" />
+		<result property="user_name" column="user_name" />
+		<result property="remark" column="remark" />
+		<result property="lst_modify_id" column="lst_modify_id" />
+		<result property="lst_modify_dt" column="lst_modify_dt" />
+		
+	</resultMap>	
+	<select id="selectCmtuser" resultMap="userResult"   >
+	    <![CDATA[
+			  select user_id,user_name,remark,lst_modify_id,lst_modify_dt
+			  from t_cmt_user 
+			  order by user_id	
+		]]>
+	</select>
+	
+	<insert id="userInsert" parameterType="tcmtuser">
+		<![CDATA[
+			 insert into t_cmt_user (user_id,user_name,remark,lst_modify_id,lst_modify_dt)
+			 	values(#{user_id},
+			 		   #{user_name},
+			 		   #{remark},
+			 		   '',
+			 		   now()
+			 		   )
+		]]>
+	</insert>
+	<insert id="userInsert2" parameterType="tcmtuser">
+		<![CDATA[
+			 insert into t_cmt_user_test (user_id,user_name)
+			 	values(#{user_id},
+			 		   #{user_name}
+			 		   )
+		]]>
+	</insert>
+	
+	
+	<resultMap id="userExtResult"    type="userExt">
+
+        <result property="user_id"              column="user_id"/>
+        <result property="user_name" column="user_name"/>
+        <result property="remark"  column="remark"/>
+        <result property="lst_modify_id"        column="lst_modify_id"/>
+        <result property="lst_modify_dt"     column="lst_modify_dt"/>
+        <result property="rnum"        column="rnum"/>
+        <result property="totcnt"       column="totcnt"/>
+     
+    </resultMap>
+    
+      <select id="getAllUser"  parameterType="map"   resultType="userExt"  >
+       <![CDATA[
+         select X.*
+                from(
+                SELECT A.*, (select count(*) from t_cmt_user) totcnt
+                           FROM ( select 	
+                           user_id,user_name,remark,lst_modify_id,lst_modify_dt,@rownum:=@rownum+1 AS RNUM 
+						from t_cmt_user where (@rownum:=0)=0) A
+				) X
+                
+				WHERE RNUM BETWEEN #{start} AND #{limit} 
+                ORDER BY RNUM ASC;
+         ]]>
+    </select>
+
+	
+ 
+</mapper>
