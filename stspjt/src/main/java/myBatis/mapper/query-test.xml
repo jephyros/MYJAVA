@@ -44,28 +44,26 @@
 	
 	<resultMap id="userExtResult"    type="userExt">
 
-        <result property="user_id"              column="user_id"/>
-        <result property="user_name" column="user_name"/>
-        <result property="remark"  column="remark"/>
-        <result property="lst_modify_id"        column="lst_modify_id"/>
+        <result property="user_id" 		column="user_id"/>
+        <result property="user_name" 	column="user_name"/>
+        <result property="remark"  		column="remark"/>
+        <result property="lst_modify_id"     column="lst_modify_id"/>
         <result property="lst_modify_dt"     column="lst_modify_dt"/>
-        <result property="rnum"        column="rnum"/>
-        <result property="totcnt"       column="totcnt"/>
+        <result property="rnum"       	column="rnum"/>
+        <result property="totcnt"    	column="totcnt"/>
      
     </resultMap>
     
       <select id="getAllUser"  parameterType="map"   resultType="userExt"  >
        <![CDATA[
-         select X.*
-                from(
-                SELECT A.*, (select count(*) from t_cmt_user) totcnt
-                           FROM ( select 	
-                           user_id,user_name,remark,lst_modify_id,lst_modify_dt,@rownum:=@rownum+1 AS RNUM 
-						from t_cmt_user where (@rownum:=0)=0) A
-				) X
-                
-				WHERE RNUM BETWEEN #{start} AND #{limit} 
-                ORDER BY RNUM ASC;
+         	select X.user_id,X.user_name,X.remark,X.lst_modify_id,X.lst_modify_dt
+         	,@rownum:=@rownum+1 AS rnum, (select count(*) from t_cmt_user) totcnt 
+                      from( SELECT A.*
+                      FROM ( select user_id,user_name,remark,lst_modify_id,lst_modify_dt
+                      from t_cmt_user ) A 
+                      ) X 
+                      where (@rownum:=0)=0
+                      ORDER BY RNUM ASC;
          ]]>
     </select>
 

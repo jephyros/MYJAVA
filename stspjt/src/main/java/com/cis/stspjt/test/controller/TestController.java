@@ -88,7 +88,18 @@ public class TestController extends MultiActionController{
 				
 		return mav;
 	}
-
+	
+	@RequestMapping(value = "/jqGridtest.do", method = RequestMethod.GET)
+	public ModelAndView jqGridtest () throws Exception{
+		
+		
+		ModelAndView mav = new ModelAndView("/test/jqGridtest");
+		
+		logger2.info("Logger2(호출) - "+mav.getViewName());
+		logger.info("Logger2(호출): " + mav.getViewName());
+				
+		return mav;
+	}
 	
 	@RequestMapping(value = "/userList.do", method = RequestMethod.GET)
 	public ModelAndView userList () throws Exception{
@@ -102,7 +113,7 @@ public class TestController extends MultiActionController{
 		return mav;
 	}
 	
-	@RequestMapping(value = "/userList",method = RequestMethod.POST)
+	@RequestMapping(value = "/userList",method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	  public @ResponseBody String getUserList(HttpServletRequest request,
 	                                                                       HttpServletResponse response,
 	                                                @RequestParam boolean _search,
@@ -114,7 +125,8 @@ public class TestController extends MultiActionController{
 	                                                 ) throws JsonGenerationException,   
 	                                                                                   JsonMappingException,
 	                                                                                   IOException {
-
+			
+	   response.setContentType("text/xml; charset=UTF8");
         
 	   logger.debug("search = " + _search + " : nd = " + nd + " : rows = " + rows +
 	                                     " : pages = " + page + " : sidx = " + sidx  + " : sord =" + sord);
@@ -126,6 +138,9 @@ public class TestController extends MultiActionController{
 	   System.err.println("start = " + start + " : limit =" + limit);
 	   params.put("start", start );
 	   params.put("limit", limit);
+	   
+	   
+	   
 	   
 	   List<UserExt> userExtList = userService.getAllUser(params);
 	   
@@ -144,7 +159,10 @@ public class TestController extends MultiActionController{
 	   modelMap.put("page", page);
 	  
 	   String value = mapper.writeValueAsString(modelMap);
-	   logger.debug(value);
+	   //logger.debug(value);
+	   logger.info("Logger2(호출): " +value);
+	   
+	  
 	   return value;
 	  }
 }
