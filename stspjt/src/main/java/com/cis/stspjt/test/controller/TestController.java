@@ -41,7 +41,7 @@ public class TestController extends MultiActionController{
 	protected final Log logger = LogFactory.getLog(getClass());
 	private static final Logger logger2 = LoggerFactory.getLogger(TestController.class);
 	
-	
+	//gittest
 	@Autowired
 	private UserService userService;
 	
