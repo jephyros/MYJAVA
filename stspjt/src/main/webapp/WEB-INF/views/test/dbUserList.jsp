@@ -41,6 +41,6 @@
 </table>
 <br><br><br>
 <a href="${pageContext.request.contextPath}/test/adduserForm.do"> µî·Ï </a>
-</center>
+
 </body>
 </html>
