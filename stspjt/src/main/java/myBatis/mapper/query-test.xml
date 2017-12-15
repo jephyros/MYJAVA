@@ -8,14 +8,27 @@
 	<resultMap id="userResult" type="tcmtuser">
 		<result property="user_id" column="user_id" />
 		<result property="user_name" column="user_name" />
+		<result property="passwd" column="passwd" />
 		<result property="remark" column="remark" />
 		<result property="lst_modify_id" column="lst_modify_id" />
 		<result property="lst_modify_dt" column="lst_modify_dt" />
 		
 	</resultMap>	
+	
+	<select id="loginCheck" resultType="String">
+        SELECT user_name AS user_name FROM t_cmt_user
+        WHERE user_id = #{user_id} AND passwd = #{passwd}
+    </select>
+    
+	<select id="viewMember" resultType="com.cis.stspjt.test.dto.T_cmt_user">
+        select user_id,user_name,passwd,remark,lst_modify_id,lst_modify_dt,passwd
+			  from t_cmt_user
+        WHERE user_id = #{user_id} AND passwd = #{passwd}
+    </select>
+    
 	<select id="selectCmtuser" resultMap="userResult"   >
 	    <![CDATA[
-			  select user_id,user_name,remark,lst_modify_id,lst_modify_dt
+			  select user_id,user_name,passwd,remark,lst_modify_id,lst_modify_dt,passwd
 			  from t_cmt_user 
 			  order by user_id	
 		]]>

@@ -3,9 +3,17 @@ package com.cis.stspjt.test.dto;
 public class T_cmt_user {
 	private String user_id;
 	private String user_name;
+	private String passwd;
 	private String remark;
 	private String lst_modify_id;
 	private String lst_modify_dt;
+	
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

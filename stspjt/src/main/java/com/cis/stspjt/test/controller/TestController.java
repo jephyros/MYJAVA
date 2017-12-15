@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,44 @@ public class TestController extends MultiActionController{
 	//gittest
 	@Autowired
 	private UserService userService;
+	
+	
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	public ModelAndView loginDo () throws Exception{		
+		
+		ModelAndView mav = new ModelAndView("/test/login");
+		
+		//logger2.info("Logger2(호출) - "+mav.getViewName());
+		//logger.info("Logger2(호출): " + mav.getViewName());
+				
+		return mav;
+	}
+	
+	// 02. 로그인 처리
+    @RequestMapping("/loginCheck.do")
+    public ModelAndView loginCheck(@ModelAttribute T_cmt_user vo, HttpSession session){
+        boolean result =  userService.loginCheck(vo, session);
+        ModelAndView mav = new ModelAndView();
+        if (result == true) { // 로그인 성공
+            // main.jsp로 이동
+            mav.setViewName("/test/home");
+            mav.addObject("msg", "success");
+        } else {    // 로그인 실패
+            // login.jsp로 이동
+            mav.setViewName("/test/login");
+            mav.addObject("msg", "failure");
+        }
+        return mav;
+    }
+ // 03. 로그아웃 처리
+    @RequestMapping("/logout.do")
+    public ModelAndView logout(HttpSession session){
+    	userService.logout(session);
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/test/login");
+        mav.addObject("msg", "logout");
+        return mav;
+    }
 	
 	@RequestMapping(value = "/dbUserList.do", method = RequestMethod.GET)
 	public ModelAndView dbuserList(HttpServletRequest request , HttpServletResponse response) throws Exception{

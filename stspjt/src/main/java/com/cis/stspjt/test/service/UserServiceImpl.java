@@ -3,6 +3,8 @@ package com.cis.stspjt.test.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,25 @@ public class UserServiceImpl implements UserService {
 			throw e;
 		}
 		return userExt;
+	}
+
+	@Override
+	public boolean loginCheck(T_cmt_user vo, HttpSession session) {
+		boolean result = testUser.loginCheck(vo);
+        if (result) { // true일 경우 세션에 등록
+            T_cmt_user vo2 = testUser.viewMember(vo);
+            // 세션 변수 등록
+            session.setAttribute("userId", vo2.getUser_id());
+            session.setAttribute("userName", vo2.getUser_name());
+        } 
+        return result;
+	}
+
+	@Override
+	public void logout(HttpSession session) {
+		// TODO Auto-generated method stub
+		session.invalidate();
+		
 	}
 
 }

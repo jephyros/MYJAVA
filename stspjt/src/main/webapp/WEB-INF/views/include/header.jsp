@@ -1,0 +1,1 @@
+<script src="${pageContext.request.contextPath}/resources/jquery.jqGrid-4.4.3/js/jquery-1.7.2.min.js" type="text/javascript"></script>

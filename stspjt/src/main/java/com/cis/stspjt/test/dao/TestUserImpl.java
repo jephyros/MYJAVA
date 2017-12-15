@@ -39,6 +39,15 @@ public class TestUserImpl implements TestUser {
 		userExt = sqlSession.selectList("mapper.test.getAllUser", hashMap);
 		return userExt;
 	}
+	@Override
+	public boolean loginCheck(T_cmt_user vo) {
+		 String name = sqlSession.selectOne("mapper.test.loginCheck", vo);
+	     return (name == null) ? false : true;
+	}
+	@Override
+	public T_cmt_user viewMember(T_cmt_user vo) {
+		 return sqlSession.selectOne("mapper.test.viewMember", vo);
+	}
 		
 
 }
