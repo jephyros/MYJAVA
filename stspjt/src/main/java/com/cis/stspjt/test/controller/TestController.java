@@ -47,6 +47,14 @@ public class TestController extends MultiActionController{
 	private UserService userService;
 	
 	
+	
+	@RequestMapping(value = "/login.html", method = RequestMethod.GET)
+	public String loginHtml () throws Exception{		
+		
+		//ModelAndView mav = new ModelAndView("/test/login.do");
+		return "security/login";
+	}
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public ModelAndView loginDo () throws Exception{		
 		

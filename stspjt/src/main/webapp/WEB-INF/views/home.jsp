@@ -12,7 +12,7 @@
 <P>  The time on the server is ${serverTime}. </P>
 	<a href ="/stspjt/test/dbUserList.do">테스트</a> <br>
 	<a href ="/stspjt/test/jqGridtest.do">그리드테스트</a><br>
-	<a href ="/stspjt//test/login.do">로그인테스트</a>
+	<a href ="/stspjt/test/login.do">로그인테스트</a>
 	 
 </body>
 </html>
