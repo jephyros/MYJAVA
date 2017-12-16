@@ -12,7 +12,22 @@
 <body>
 	 <h1>DAO인터페이스와 getMapper(xx.class)를 <br>이용해 myBatis의 XML쿼리와연계하여조회 리스트</h1><br>
 	 left outer join 사용하여 수겅된 DTO를 활용
-	
+<table width ="70%" border ="0" cellpadding="0" cellspacing="0" >
+	<tr bgcolor="white">
+	<td>
+		 <div id="search" style="text-align: right;">
+		  <form id="searchForm" action="/board/boardlistExt.do" method="get" >
+		   		    
+		    제목: <input type="text" name="title" size="15" maxlength="30" /> 
+		    작성자: <input type="text" name="name" size="7" maxlength="30" />
+		    <input type="button" value="검색" />
+		    
+		  </form>
+		 </div>
+	 </td>
+	 </tr>
+</table>	
+ <br>	
 <table width ="70%" border ="1" cellpadding="0" cellspacing="0" >
 	<tr align ="center" bgcolor="yellow">
 		<td>NUM</td>
@@ -38,7 +53,11 @@
 </c:forEach>
 
 </table>
-<br><br><br>
+<br>
+
+
+
+<br><br>
 
 </body>
 </html>
