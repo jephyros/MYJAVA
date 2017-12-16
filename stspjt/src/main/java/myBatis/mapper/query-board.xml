@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cis.stspjt.board.dao.BoardDao">
+    
+	<select id="boardList" resultType="com.cis.stspjt.board.dto.Board">
+         <![CDATA[					  
+		    select num,title,content,lst_modify_id,lst_modify_dt
+		    from board
+		    order by num desc
+		]]>
+    </select>
+    
+	
+
+	
+ 
+</mapper>

@@ -35,7 +35,7 @@ jQuery(document).ready(function(){
         ],
         pager: jQuery('#gridpager'),
         pagination:true,
-        rowNum:10,
+        rowNum:15,
         rowList:[10,20,30],
         sortname: 'user_id',
         viewrecords: true,

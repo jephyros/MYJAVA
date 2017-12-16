@@ -31,11 +31,6 @@ import com.cis.stspjt.test.dto.UserExt;
 import com.cis.stspjt.test.service.UserService;
 
 
-
-
-
-
-
 @Controller
 @RequestMapping("/test")
 public class TestController extends MultiActionController{
@@ -177,7 +172,9 @@ public class TestController extends MultiActionController{
         
 	   logger.debug("search = " + _search + " : nd = " + nd + " : rows = " + rows +
 	                                     " : pages = " + page + " : sidx = " + sidx  + " : sord =" + sord);
-
+	   
+	   System.out.println("로그찍기 search = " + _search + " : nd = " + nd + " : rows = " + rows +
+	                                     " : pages = " + page + " : sidx = " + sidx  + " : sord =" + sord);
 	   HashMap<String,Object> params = new HashMap<String,Object>();
 	   int start =  ((page - 1) * rows ) + 1;
 	   int limit = (start + rows) -1;
