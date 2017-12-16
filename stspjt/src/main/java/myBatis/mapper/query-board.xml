@@ -11,10 +11,14 @@
 		    from board
 		    order by num desc
 		]]>
-    </select>
+    </select> 
+    <select id="boardListExt" resultType="com.cis.stspjt.board.dto.BoardExt">
+         <![CDATA[					  
+		    select a.num,a.title,a.content,a.lst_modify_id,a.lst_modify_dt,b.user_name
+			from board a
+			left outer join t_cmt_user b on a.lst_modify_id = b.user_id
+			order by a.num
+		]]>
+    </select> 
     
-	
-
-	
- 
 </mapper>

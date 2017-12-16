@@ -31,7 +31,7 @@ public class BoardController {
 	
 	//보드리스트 -> DBO를 안쓰고 request mapper 를 써보자
 	@RequestMapping(value = "/boardlist.do", method = RequestMethod.GET)
-	public ModelAndView List(HttpServletRequest request , HttpServletResponse response) throws Exception{
+	public ModelAndView BoardList(HttpServletRequest request , HttpServletResponse response) throws Exception{
 		
 		
 		BoardDao boardDao=sqlsession.getMapper(BoardDao.class);
@@ -47,4 +47,18 @@ public class BoardController {
 				
 		return mav;
 	}
+	//보드리스트 -> DBO를 안쓰고 request mapper 를 써보자
+		@RequestMapping(value = "/boardlistExt.do", method = RequestMethod.GET)
+		public ModelAndView BoardListExt(HttpServletRequest request , HttpServletResponse response) throws Exception{
+			
+			
+			BoardDao boardDao=sqlsession.getMapper(BoardDao.class);
+			
+			ModelAndView mav = new ModelAndView("/board/boardlistExt");
+			mav.addObject("boardlistExt",boardDao.boardListExt());
+			
+			logger.info("Logger2(호출): " + mav.getViewName());
+					
+			return mav;
+		}
 }
