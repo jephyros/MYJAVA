@@ -8,6 +8,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>보드리스트</title>
+
+<%@ include file="../include/header.jsp" %>
+
+<script language="javascript">
+    $(document).ready(function(){
+        $("#btnSearch").click(function(){
+            // 태크.val() : 태그에 입력된 값
+            // 태크.val("값") : 태그의 값을 변경 
+            
+           // alert("검색을 시작합니다." + "${pageContext.request.contextPath}/board/boardlistExt.do");
+            // 폼 내부의 데이터를 전송할 주소
+            document.searchForm.action="${pageContext.request.contextPath}/board/boardlistSearch.do"
+            // 제출
+            document.searchForm.submit();
+        });
+    });
+</script>
+
 </head>
 <body>
 	 <h1>DAO인터페이스와 getMapper(xx.class)를 <br>이용해 myBatis의 XML쿼리와연계하여조회 리스트</h1><br>
@@ -16,11 +34,11 @@
 	<tr bgcolor="white">
 	<td>
 		 <div id="search" style="text-align: right;">
-		  <form id="searchForm" action="/board/boardlistExt.do" method="get" >
+		  <form name ="searchForm"  method="POST" >
 		   		    
-		    제목: <input type="text" name="title" size="15" maxlength="30" /> 
-		    작성자: <input type="text" name="name" size="7" maxlength="30" />
-		    <input type="button" value="검색" />
+		    제목: <input type="text" name="title" id="title" size="15" maxlength="30" /> 
+		    작성자: <input type="text" name="user_name" id ="user_name" size="7" maxlength="30" />
+		    <input type="button"  id ="btnSearch" value="검색" />
 		    
 		  </form>
 		 </div>

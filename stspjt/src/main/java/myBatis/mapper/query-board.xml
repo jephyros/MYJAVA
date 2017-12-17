@@ -13,12 +13,24 @@
 		]]>
     </select> 
     <select id="boardListExt" resultType="com.cis.stspjt.board.dto.BoardExt">
-         <![CDATA[					  
-		    select a.num,a.title,a.content,a.lst_modify_id,a.lst_modify_dt,b.user_name
-			from board a
-			left outer join t_cmt_user b on a.lst_modify_id = b.user_id
-			order by a.num
-		]]>
+        			  
+	    select a.num,a.title,a.content,a.lst_modify_id,a.lst_modify_dt,b.user_name
+		from board a
+		left outer join t_cmt_user b on a.lst_modify_id = b.user_id
+		where 1=1
+		<if test="num == -1">
+	    	AND a.num = #{num}
+	    </if>
+	    <if test="title != null and title != '' ">
+		    AND a.title like CONCAT('',#{title},'%')
+		</if>
+		
+		<if test="user_name != null and user_name != '' ">
+		    AND b.user_name like CONCAT('',#{user_name},'%')
+		</if>
+		
+		order by a.num
+		
     </select> 
     
 </mapper>

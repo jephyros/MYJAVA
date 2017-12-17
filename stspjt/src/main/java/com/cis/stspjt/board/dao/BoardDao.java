@@ -7,6 +7,6 @@ import com.cis.stspjt.board.dto.BoardExt;
 
 public interface BoardDao {
 	public ArrayList<Board> boardList();
-	public ArrayList<BoardExt> boardListExt();
+	public ArrayList<BoardExt> boardListExt(BoardExt boardExt);
 
 }
